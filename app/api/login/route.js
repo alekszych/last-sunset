@@ -1,6 +1,6 @@
 
 import { NextResponse } from "next/server";
-import userDb from "../users.json"
+
 import { connectMongoDB } from "lib/mongodb";
 import bcrypt from "bcryptjs";
 import User from "@/models/user";
