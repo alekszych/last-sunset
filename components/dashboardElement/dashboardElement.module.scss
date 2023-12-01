@@ -1,0 +1,15 @@
+.dashboardElement
+{
+  width: 100%;
+  width: -moz-available;
+  width: -webkit-fill-available;
+  width: fill-available;
+  padding: 32px 64px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
+  border-radius: 16px;
+  box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.25);
+}
