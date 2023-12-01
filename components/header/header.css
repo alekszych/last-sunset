@@ -1,0 +1,8 @@
+header {
+    width: 100%;
+    background-color: orange;
+    color: black;
+    display: flex;
+    justify-items: center;
+    justify-content: center;
+}
