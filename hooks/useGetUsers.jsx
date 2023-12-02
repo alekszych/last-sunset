@@ -11,7 +11,7 @@ const useGetUsers = (setAstronauts) => {
 				}
 			}
 			catch(e) {
-				alert(e)
+				console.log(e)
 			}
 		}())
 	}, [setAstronauts])

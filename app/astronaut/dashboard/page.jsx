@@ -8,12 +8,14 @@ import { IoCubeOutline } from "react-icons/io5";
 import Link from "next/link";
 import Table from "@/components/table/table";
 import {useSession} from "next-auth/react";
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import useGetTasks from "@/hooks/useGetTasks";
 import useGetVitals from "@/hooks/useGetVitals";
+const timeLeft = 235
 
 export default function Page() {
     const { data: session } = useSession()
+    console.log(session)
 
     const [tasks, setTasks] = useState([])
     const [vitals, setVitals] = useState([])
@@ -23,13 +25,9 @@ export default function Page() {
 
     console.log(vitals)
 
-    const timeLeft = 235;
-    const bpm = 64;
-    const sugar = 70;
-    const mood = "happy"; //happy || normal  || sad
-    let iconMood;
+    let iconMood
 
-    switch(mood) {
+    switch(vitals.feeling) {
         case("happy"):
             iconMood = <TbMoodSmileFilled size={24} color={"green"} />;
             break;

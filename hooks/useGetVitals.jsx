@@ -11,7 +11,7 @@ const useGetTasks = (userId, setVitals) => {
 				}
 			}
 			catch(e) {
-				alert(e)
+				console.log(e)
 			}
 		}())
 	}, [setVitals, userId])
