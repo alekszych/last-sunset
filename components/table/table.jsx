@@ -12,7 +12,7 @@ const Table = ({items}) => {
 			<p className={style.heading}> Description </p>
 			<p className={style.heading}> Status </p>
 			{items.map(item => <>
-				<p> {item.name} </p>
+				<p> {item.title} </p>
 				<p> {item.description} </p>
 				<p onClick={() => {setWindow(item)}} className={style.link}> {item.status} </p>
 			</>)}
