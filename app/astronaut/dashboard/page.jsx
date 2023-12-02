@@ -7,6 +7,7 @@ import { TbMoodSmileFilled, TbMoodEmptyFilled, TbMoodSadFilled } from "react-ico
 import { IoCubeOutline } from "react-icons/io5";
 import Link from "next/link";
 import Table from "@/components/table/table";
+import Input from "@/components/input/Input";
 
 export default function Page() {
     const name = "John";
@@ -79,6 +80,9 @@ export default function Page() {
                     <Table items={tasks} />
                 </DashboardElement>
             </Dashboard>
+            <Input type={"select"} label={"sex"} selectOptionsHTML={<><option value='jaderka'>jaderka</option><option value='jaderka'>jaderka</option><option value='jaderka'>jaderka</option></>} required={true} />
+            <Input type={"text"} placeholder={"sex"} label={"sex"} required={true} />
+            <Input type={"textarea"} placeholder={"sex"} label={"sex"} required={true} />
         </div>
     )
 }

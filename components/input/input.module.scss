@@ -1,0 +1,33 @@
+.input::placeholder, .textarea::placeholder {
+  display: flex;
+  font-size: 16px;
+  font-family: Lato, sans-serif;
+  color: #B7B7B7;
+}
+
+.input, .select, .textarea{
+  width: 280px;
+  background-color: white;
+  border: 0;
+  border-radius: 8px;
+  padding: 12px 0 12px 16px;
+  font-size: 16px;
+  font-family: Lato, sans-serif;
+  color: black;
+
+  &:focus {
+    border: 2px solid #B7B7B7;
+  }
+}
+
+.input {
+  height: 43px;
+}
+
+.textarea {
+  height: 86px;
+}
+
+.select {
+  background-position: 0 0;
+}
