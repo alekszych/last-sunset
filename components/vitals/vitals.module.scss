@@ -3,7 +3,7 @@
   grid-template-columns: 1fr 1fr 1fr;
   gap: 32px;
   >div{
-    gap: 32px;
+    gap: 16px;
     flex-direction: column;
     >div {
       display: flex;
@@ -23,4 +23,8 @@
 
 .row2{
   grid-template-columns: 1fr 1fr;
+}
+
+.dashboardEl {
+  gap: 8px !important;
 }
