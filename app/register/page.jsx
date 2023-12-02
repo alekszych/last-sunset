@@ -3,12 +3,12 @@ import style from "./login.module.scss"
 import Button from "@/components/button/Button"
 import Input from "@/components/input/Input"
 import {useState} from "react"
-import {useRouter} from "next/navigation"
+import {useRouter} from "next/navigation";
 
 export default function Page() {
+	const router = useRouter()
 	const [email, setEmail] = useState("")
 	const [password, setPassword] = useState("")
-	const router = useRouter()
 
 	const handleSubmit = async () => {
 
@@ -44,8 +44,8 @@ export default function Page() {
 				}),
 			});
 
-			if (res.ok) {
-				router.replace("/login")
+			if (res.ok && typeof window !== "undefined") {
+				rotuer.push("/login")
 			} else {
 				alert("User registration failed.");
 			}

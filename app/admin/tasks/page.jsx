@@ -11,6 +11,22 @@ import useGetUsers from "@/hooks/useGetUsers"
 import DialogWindow from "@/components/dialogWindow/dialogWindow";
 import Input from "@/components/input/Input";
 import axios from "axios"
+require("core-js/actual/array/group-by-to-map")
+require("core-js/actual/array/group-by")
+
+const groupBy = (list, keyGetter) => {
+    const map = new Map();
+    list.forEach((item) => {
+        const key = keyGetter(item);
+        const collection = map.get(key);
+        if (!collection) {
+            map.set(key, [item]);
+        } else {
+            collection.push(item);
+        }
+    });
+    return map;
+}
 
 export default function Page() {
     const [newTaskTitle, setNewTaskTitle] = useState("")
@@ -21,7 +37,7 @@ export default function Page() {
     useGetUsers(setAstronauts)
     const [tasks, setTasks] = useState([])
     useGetAllTasks(setTasks)
-    const groupedTasks = Object.groupBy(tasks, item => item.userId)
+    const groupedTasks = groupBy(tasks, item => item.userId)
     const listOfUsersWithTasks = []
     const [window, setWindow] = useState(false)
 

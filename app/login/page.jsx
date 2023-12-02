@@ -4,12 +4,12 @@ import Button from "@/components/button/Button"
 import Input from "@/components/input/Input"
 import {useState} from "react"
 import {signIn} from "next-auth/react"
-import {redirect, useRouter} from "next/navigation"
+import {useRouter} from "next/navigation";
 
 export default function Page() {
+	const router = useRouter()
 	const [email, setEmail] = useState("")
 	const [password, setPassword] = useState("")
-	const router = useRouter()
 
 	const handleSubmit = async () => {
 		const res = await signIn("credentials", {
@@ -23,7 +23,8 @@ export default function Page() {
 			return;
 		}
 
-		router.replace("/astronaut/dashboard");
+		if(typeof window !== "undefined")
+			router.push("/astronaut/dashboard")
 	}
 
 	return(

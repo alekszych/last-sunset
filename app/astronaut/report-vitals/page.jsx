@@ -3,14 +3,13 @@ import style from './page.module.scss';
 import Input from "@/components/input/Input";
 import {useState} from "react";
 import Button from "@/components/button/Button";
-import * as querystring from "querystring";
-import {signIn, useSession} from "next-auth/react";
-import {router} from "next/client";
-import {useRouter} from "next/navigation";
+import {useSession} from "next-auth/react";
 import axios from "axios";
+import {useRouter} from "next/navigation";
 
 export default function Page() {
     const { data: session } = useSession()
+    const router = useRouter()
     const userId = session?.user?.id || 0
 
     const [heartBeat, setHeartBeat] = useState("");
@@ -18,7 +17,6 @@ export default function Page() {
     const [feeling, setFeeling] = useState("normal");
     const [sleep, setSleep] = useState("");
     const [exercise, setExercise] = useState("");
-    const router = useRouter()
 
     const handleSubmit = async () => {
         const res = await axios.post("/api/vitals", { userId, heartBeat, sugar, sleep, exercise, feeling})
@@ -28,7 +26,8 @@ export default function Page() {
             return;
         }
 
-        router.replace("/astronaut/vitals");
+        if(typeof window !== "undefined")
+            router.push("/astronaut/vitals")
     }
 
     return(

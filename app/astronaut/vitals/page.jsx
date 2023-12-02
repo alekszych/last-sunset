@@ -2,25 +2,25 @@
 import style from './page.module.scss'
 import Vitals from "@/components/vitals/vitals"
 import Button from "@/components/button/Button"
-import Link from "next/link"
 import {useState} from "react";
 import useGetVitals from "@/hooks/useGetVitals";
 import Dashboard from "@/components/dashboard/Dashboard";
-import {useRouter} from "next/navigation";
 import {useSession} from "next-auth/react";
+import {useRouter} from "next/navigation";
 
 export default function Page() {
     const { data: session } = useSession()
     const userId = session?.user?.id || 0
 
+    const router = useRouter()
     const [vitals, setVitals] = useState({heartBeat: "", feeling: "", sugar: "", sleep: "", exercise: ""})
     useGetVitals(userId, setVitals)
 
     const {heartBeat, feeling, sugar, sleep, exercise} = vitals
-    
-    const router = useRouter();
+
     function redirect()  {
-        router.replace("/astronaut/report-vitals");
+        if(typeof window !== "undefined")
+            router.push("/astronaut/report-vitals")
     }
 
     return(

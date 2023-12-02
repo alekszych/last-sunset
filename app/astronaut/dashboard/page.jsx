@@ -73,7 +73,7 @@ export default function Page() {
                             {
                                 tasks.slice(0, 2).map((el, index)=>{
                                     if(index === 3) {
-                                        return(<Link href={"/astronaut/tasks"}><p className={style.seeAllTasksLink}><b><u>See all tasks</u></b></p></Link>);
+                                        return(<Link href={"/astronaut/tasks"} key={index}><p className={style.seeAllTasksLink}><b><u>See all tasks</u></b></p></Link>);
                                     } else if (index > 3) {
                                         return;
                                     }
