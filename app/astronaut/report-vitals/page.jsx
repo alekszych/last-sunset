@@ -4,6 +4,10 @@ import Input from "@/components/input/Input";
 import {useState} from "react";
 import Button from "@/components/button/Button";
 import * as querystring from "querystring";
+import {signIn} from "next-auth/react";
+import {router} from "next/client";
+import {useRouter} from "next/navigation";
+import axios from "axios";
 
 export default function Page() {
     const [hr, setHr] = useState("");
@@ -11,9 +15,17 @@ export default function Page() {
     const [mood, setMood] = useState("normal");
     const [sleep, setSleep] = useState("");
     const [exercise, setExercise] = useState("");
+    const router = useRouter()
 
     const handleSubmit = async () => {
+        await axios.post("/api/vitals", { userId, hr, sugar, sleep, exercise})
 
+        if (res.error) {
+            console.log("Invalid Credentials");
+            return;
+        }
+
+        router.replace("/astronaut/vitals");
     }
 
     return(
