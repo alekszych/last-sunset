@@ -10,7 +10,7 @@ export async function POST(req) {
         await connectMongoDB();
         const { email, password } = await req.json();
         const hashedPassword = await bcrypt.hash(password, 10);
-        let role ="astro"
+        let role = "astro"
         let user = await User.findOne({ email });
         if(user == null)
             return NextResponse.json(

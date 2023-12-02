@@ -33,3 +33,9 @@
 .select {
   background-position: 0 0;
 }
+
+.inputWrapper{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
