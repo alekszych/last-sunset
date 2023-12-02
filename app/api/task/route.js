@@ -38,20 +38,20 @@ export async function GET(req) {
 export async function PUT(req) {
     try {
         await connectMongoDB();
-        const { taskId, changedElement, changeValueTo } = await req.json();
+        const { title, changedElement, changeValueTo } = await req.json();
         let task;
         switch (changedElement){
             case "title":
-                task = await Task.findOneAndUpdate({_id: taskId}, {title: changeValueTo});
+                task = await Task.findOneAndUpdate({title: title}, {title: changeValueTo});
                 break;
             case "description":
-                task = await Task.findOneAndUpdate({_id: taskId}, {description: changeValueTo});
+                task = await Task.findOneAndUpdate({title: title}, {description: changeValueTo});
                 break;
             case "userId":
-                task = await Task.findOneAndUpdate({_id: taskId}, {userId: changeValueTo});
+                task = await Task.findOneAndUpdate({title: title}, {userId: changeValueTo});
                 break;
             case "status":
-                task = await Task.findOneAndUpdate({_id: taskId}, {status: changeValueTo});
+                task = await Task.findOneAndUpdate({title: title}, {status: changeValueTo});
                 break;
             default:
                 console.log("No such element exists");

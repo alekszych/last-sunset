@@ -15,9 +15,9 @@ export default function Page() {
     const [tasks, setTasks] = useState([])
     useGetTasks(userId, setTasks)
 
-    const changeTaskStatus = async(value, taskId) => {
+    const changeTaskStatus = async(value, title) => {
         try{
-            const res = await axios.put('/api/task', {taskId: taskId, changeElement: "status", changeValueTo: value})
+            const res = await axios.put('/api/task', {title: title, changedElement: "status", changeValueTo: value})
             console.log(res)
         }
         catch (e)

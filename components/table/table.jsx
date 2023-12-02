@@ -20,9 +20,9 @@ const Table = ({items, changeTaskStatus}) => {
 				<h3> {window.title} </h3>
 				<p> {window.description} </p>
 				<Input type={"select"}
-				       selectOptionsHTML={<><option value={"completed"}>Completed</option><option value={"progress"}>Progress</option><option value={"pending"}>Pending</option></>}
+				       selectOptionsHTML={<><option value={"Completed"}>Completed</option><option value={"In progress"}>In progress</option><option value={"Pending"}>Pending</option></>}
 				       unit={"select"}
-				       onChange={e => {changeTaskStatus(e, window._id); setWindow(false)}}/>
+				       onChange={e => {changeTaskStatus(e, window.title); setWindow(false)}}/>
 			</DialogWindow>}
 		</div>
 	)
