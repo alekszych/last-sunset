@@ -13,6 +13,14 @@ const userSchema = new Schema(
       role: {
           type: String,
           required: true,
+      },
+      name: {
+          type: String,
+          required: true
+      },
+      surname: {
+        type: String,
+          required: true
       }
   },
   { timestamps: true }
