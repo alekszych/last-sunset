@@ -43,6 +43,34 @@ export const authOptions = {
   pages: {
     signIn: "/",
   },
+  callbacks: {
+    session: async (session) => {
+      console.log(JSON.stringify(session) +"ffff---------------------------", session.session.user.email, "---")
+      // if (!session) return;
+      //
+      // await connectMongoDB();
+      //
+      // const userData = await User.findOne({
+      //   email: session.user.email,
+      // });
+      // console.log(userData)
+      await connectMongoDB();
+     let userrr =
+         await User.findOne({ email:session.session.user.email}).then(user => user._id);
+
+      let email =
+          await User.findOne({ email:session.session.user.email}).then(user => user.email);
+     console.log("user" +" !!!!xx!!!!!!!!!!!!" +session.session.user.email)
+      return {
+        session: {
+          user: {
+            id: userrr._id,
+            email: email
+          }
+        }
+      };
+    },
+  }
 };
 
 const handler = NextAuth(authOptions);
