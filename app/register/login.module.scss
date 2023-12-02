@@ -11,10 +11,25 @@
   margin-top: 64px;
 }
 
+.title {
+  color: black;
+}
+
 .inputContainer{
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 16px;
+}
+
+.colorChange {
+  color: black !important;
+  border: 2px solid black;
+  cursor: pointer;
+
+  &:hover {
+    color: white !important;
+    background-color: black;
+  }
 }
 

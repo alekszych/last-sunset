@@ -56,12 +56,12 @@ export default function Page() {
 
 	return(
 		<div className={style.loginForm}>
-			<h2> Create account </h2>
+			<h2 className={style.title}> Create account </h2>
 			<div className={style.inputContainer}>
 				<Input type={"text"} label={"Email"} onChange={setEmail}/>
 				<Input type={"text"} label={"Password"} onChange={setPassword}/>
 			</div>
-			<Button onClick={handleSubmit} btnText={"Register"}/>
+			<Button onClick={handleSubmit} btnText={"Register"} additionalClassName={style.colorChange}/>
 		</div>
 	)
 }
