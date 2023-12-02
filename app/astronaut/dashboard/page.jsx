@@ -6,6 +6,7 @@ import { FaHeart } from "react-icons/fa";
 import { TbMoodSmileFilled, TbMoodEmptyFilled, TbMoodSadFilled } from "react-icons/tb";
 import { IoCubeOutline } from "react-icons/io5";
 import Link from "next/link";
+import Table from "@/components/table/table";
 
 export default function Page() {
     const name = "John";
@@ -73,6 +74,10 @@ export default function Page() {
                         </div>
                     </DashboardElement>
                 </section>
+                <DashboardElement backgroundColor={"#BFB293"}>
+                    <h3 style={{alignSelf: "flex-start"}}>Mission tasks:</h3>
+                    <Table items={tasks} />
+                </DashboardElement>
             </Dashboard>
         </div>
     )
