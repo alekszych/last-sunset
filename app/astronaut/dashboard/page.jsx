@@ -18,7 +18,7 @@ export default function Page() {
     const [tasks, setTasks] = useState([])
     const [vitals, setVitals] = useState([])
 
-    useGetTasks(1, setTasks)
+    useGetTasks(1, setTasks) // todo: replace id
     useGetVitals("656a4bad181e25ea1531b02d", setVitals)
 
     console.log(vitals)

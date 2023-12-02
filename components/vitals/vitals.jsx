@@ -8,8 +8,7 @@ import Dashboard from "@/components/dashboard/Dashboard";
 
 const Vitals = ({title, heartRate, sugar, mood, sleep, exercise}) => {
 	return (
-		<Dashboard>
-			<section className={style.section}>
+		<section className={style.section}>
 				<DashboardElement backgroundColor={"#BAB6C1"}>
 					<h3> {title} </h3>
 				</DashboardElement>
@@ -18,21 +17,21 @@ const Vitals = ({title, heartRate, sugar, mood, sleep, exercise}) => {
 						<h4> Heart rate </h4>
 						<div>
 							<FaHeart size={24} color={"#AD0000"} />
-							<p> 64bpm </p>
+							<p> {heartRate} bpm </p>
 						</div>
 					</DashboardElement>
 					<DashboardElement backgroundColor={"#B0D2C1"}>
 						<h4> Sugar level </h4>
 						<div>
 							<IoCubeOutline size={24} color={"black"} />
-							<p> 70mg </p>
+							<p> {sugar} mg </p>
 						</div>
 					</DashboardElement>
 					<DashboardElement backgroundColor={"#C4C3A9"}>
 						<h4> Last mood </h4>
 						<div>
 							<TbMoodSmileFilled size={24} color={"green"} />
-							<p> Happy </p>
+							<p> {mood} </p>
 						</div>
 					</DashboardElement>
 				</div>
@@ -41,19 +40,18 @@ const Vitals = ({title, heartRate, sugar, mood, sleep, exercise}) => {
 						<h4> Sleep </h4>
 						<div>
 							<FaBed size={24} />
-							<p> 7.5hours </p>
+							<p> {sleep} hrs </p>
 						</div>
 					</DashboardElement>
 					<DashboardElement backgroundColor={"#BAC1B6"}>
 						<h4> Exercise </h4>
 						<div>
 							<FaRunning size={24} />
-							<p> 1000kcal </p>
+							<p> {exercise} kcal </p>
 						</div>
 					</DashboardElement>
 				</div>
 			</section>
-		</Dashboard>
 	)
 }
 
