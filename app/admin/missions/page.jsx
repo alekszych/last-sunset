@@ -8,12 +8,18 @@ import style from "./page.module.scss";
 import ProgressBar from "@/components/progressBar/ProgressBar";
 import Table from "@/components/table/table";
 import axios from "axios";
+import DialogWindow from "@/components/dialogWindow/dialogWindow";
+import Input from "@/components/input/Input";
 
 export default function Page() {
     const[missions, setMissions] = useState(null);
     const[loading, setLoading] = useState(true);
     const[currentlySelected, setCurrentlySelected] = useState(null);
-
+    const[showAddMissionDialog, setShowAddMissionDialog] = useState(false);
+    const[newMissionInputText, setNewMissionInputText] = useState("");
+    const[newTaskTitle, setNewTaskTitle] = useState("");
+    const[newTaskDescription, setNewTaskDescription] = useState("");
+    const[showAddTaskDialog, setShowAddTaskDialog] = useState(false);
 
     async function changeStatus()
     {
@@ -21,6 +27,35 @@ export default function Page() {
         let currentlySelectedClone = currentlySelected;
         currentlySelectedClone.status = currentlySelected.status === "In progress" ? "Pending" : "In progress";
         setCurrentlySelected(currentlySelectedClone);
+    }
+
+    function openNewMissionDialog()
+    {
+        setShowAddMissionDialog(true);
+    }
+
+    function closeNewMissionDialog()
+    {
+        setShowAddMissionDialog(false);
+    }
+
+    async function addNewMission()
+    {
+        await axios.post("/api/mission", {title: newMissionInputText, length: 360, startDate: new Date().toDateString(), milestones: []});
+        missions.push({title: newMissionInputText, length: 360, startDate: new Date().toDateString(), milestones: [], status: "Pending"});
+        setShowAddMissionDialog(false);
+    }
+
+    function closeAddTaskDialog()
+    {
+        setShowAddTaskDialog(false);
+    }
+
+    async function addNewTask()
+    {
+        await axios.put("/api/addMilestone", {missionTitle: currentlySelected.title, title: newTaskTitle, description: newTaskDescription});
+        currentlySelected.milestones.push({title: newTaskTitle, description: newTaskDescription, status: "Pending"});
+        setShowAddTaskDialog(false);
     }
 
     useEffect(() => {
@@ -44,8 +79,19 @@ export default function Page() {
     else {
         return (
             <div style={{"padding": "64px 0"}}>
+                {showAddMissionDialog ? <DialogWindow close={() => {closeNewMissionDialog()}}>
+                    <h2 className={style.missionInputHeader}>Create a mission</h2>
+                        <Input onChange={setNewMissionInputText} type={"text"} placeholder={"Enter the mission title"} label={"Title"}></Input>
+                    <Button btnText={"Create"} onClick={()=>{addNewMission()}}></Button>
+                </DialogWindow> : ""}
+                {showAddTaskDialog ? <DialogWindow close={() => {closeAddTaskDialog()}}>
+                    <h2 className={style.missionInputHeader}>Add a task</h2>
+                    <Input onChange={setNewTaskTitle} type={"text"} placeholder={"Enter the task title"} label={"Title"}></Input>
+                    <Input onChange={setNewTaskDescription} type={"textarea"} placeholder={"Enter the task description"} label={"Description"}></Input>
+                    <Button btnText={"Add"} onClick={()=>{addNewTask()}}></Button>
+                </DialogWindow> : ""}
                 <Dashboard>
-                    <Button href={"/ababba"} btnText={"Create new mission"}></Button>
+                    <Button btnText={"Create new mission"} onClick={()=>{openNewMissionDialog()}}></Button>
                     <section style={{"padding": "32px 0"}}>
                         {
                             missions.map((mission, i)=>
@@ -82,7 +128,7 @@ export default function Page() {
                             <Table items={currentlySelected.milestones}></Table>
                         </div>
                     </section>
-                    <Button href={"/ababba"} btnText={"Add task to mission"}></Button>
+                    <Button btnText={"Add task to mission"} onClick={()=>{setShowAddTaskDialog(true)}}></Button>
                 </Dashboard>
             </div>
         )
