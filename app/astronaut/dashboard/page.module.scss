@@ -15,6 +15,10 @@
   gap: 0 !important;
 }
 
+.dashboardElException {
+  gap: 10px !important;
+}
+
 .widgetGroup {
   width: 300px;
   display: flex;
@@ -26,4 +30,15 @@
 .iconWidget {
   display: flex;
   gap: 8px;
+}
+
+.taskGroup {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  row-gap: 16px;
+  column-gap: 50px;
+}
+
+.seeAllTasksLink {
+  width: 100%;
 }

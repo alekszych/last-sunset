@@ -31,8 +31,10 @@ export default function Header(type) {
         case("admin"):
             return(
                 <header className={[style.header, style.headerAdmin].join(" ")}>
-                    <Image src={"/logo.png"} alt={"logo"} width={32} height={32} />
-                    <h5>Last sunset</h5>
+                    <Link href={"/"} className={style.logoContainer}>
+                        <Image src={"/logo.png"} alt={"logo"} width={32} height={32} />
+                        <h5>Last sunset</h5>
+                    </Link>
                     <div className={style.links}>
                         <Link href={"/admin/tasks"}><p>Tasks</p></Link>
                         <Link href={"/admin/astronauts"}><p>Astronauts</p></Link>
@@ -44,8 +46,10 @@ export default function Header(type) {
         default:
             return(
                 <header className={[style.header, style.headerHome].join(" ")}>
-                    <Image src={"/logo.png"} alt={"logo"} width={32} height={32} />
-                    <h5>Last sunset</h5>
+                    <Link href={"/"} className={style.logoContainer}>
+                        <Image src={"/logo.png"} alt={"logo"} width={32} height={32} />
+                        <h5>Last sunset</h5>
+                    </Link>
                     <FaUser size={32} color={"white"} className={style.profileIcon} />
                 </header>
             )
