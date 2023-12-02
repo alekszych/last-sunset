@@ -2,14 +2,11 @@
 import style from "./button.module.scss"
 import Link from "next/link"
 
-const Button = ({btnText, href, additionalClassName}) => {
-    console.log(additionalClassName)
+const Button = ({btnText, onClick, additionalClassName}) => {
     return (
-        <Link href={href} className={additionalClassName}>
-            <button className={[style.btnTransparent, additionalClassName].join(" ")}>
-                <h5>{btnText}</h5>
-            </button>
-        </Link>
+        <button className={[style.btnTransparent, additionalClassName].join(" ")} onClick={onClick}>
+            <h5>{btnText}</h5>
+        </button>
     );
 }
 
