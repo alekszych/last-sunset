@@ -19,7 +19,7 @@ const Table = ({items}) => {
 			{window && <DialogWindow close={() => setWindow(false)}>
 				<h3> {window.name} </h3>
 				<p> {window.description} </p>
-				<Input type={"select"} selectOptionsHTML={<><option value={"completed"}>Completed</option><option value={"progress"}>Progress</option><option value={"pending"}>Pending</option></>}/>
+				<Input type={"select"} selectOptionsHTML={<><option value={"completed"}>Completed</option><option value={"progress"}>Progress</option><option value={"pending"}>Pending</option></>} unit={"select"}/>
 			</DialogWindow>}
 		</div>
 	)

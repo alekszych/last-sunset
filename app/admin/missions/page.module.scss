@@ -47,11 +47,19 @@ gap: 4px;
 .mission
 {
     background-color: #B0D2C1;
+    &:hover
+    {
+        transform: scale(1.05);
+    }
 }
 
 .missionSelected
 {
     background-color: #BAB6C1;
+    &:hover
+    {
+        transform: scale(1.05);
+    }
 }
 
 .midsectionSection
@@ -99,7 +107,7 @@ padding-bottom: 32px;
 
         &:hover
         {
-            background-color: #029902;
+            transform: scale(1.05);
         }
     }
 
@@ -119,4 +127,10 @@ padding-bottom: 32px;
         gap: 32px;
     }
 }
+}
+
+.missionContainer{
+    padding: 32px 0;
+    display: flex;
+    justify-content: center;
 }

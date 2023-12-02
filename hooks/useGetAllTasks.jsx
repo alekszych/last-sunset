@@ -11,7 +11,7 @@ const useGetTasks = (setTasks) => {
 				}
 			}
 			catch(e) {
-				alert(e)
+				console.log(e)
 			}
 		}())
 	}, [setTasks])

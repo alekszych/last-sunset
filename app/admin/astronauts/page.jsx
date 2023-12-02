@@ -5,18 +5,22 @@ import style from "./page.module.scss"
 import Vitals from "@/components/vitals/vitals"
 import Table from "@/components/table/table"
 import {useState} from "react"
-
-const astronauts = [
-    {id: 4212411, name: "John Sparrow"},
-    {id: 421421, name: "John Black"}
-]
-
-const tasks = [
-    {id: 4121321, name: "Task 1", description: "Lorem ipsum dolor", status: "Pending"}
-]
+import useGetUsers from "@/hooks/useGetUsers";
+import useGetVitals from "@/hooks/useGetVitals";
+import useGetTasks from "@/hooks/useGetTasks";
+import {useSession} from "next-auth/react";
 
 export default function Page() {
-    const [selectedAstronaut, setSelectedAstronaut] = useState(1)
+    const { data: session } = useSession()
+    const userId = session?.user?.id
+    const [selectedAstronaut, setSelectedAstronaut] = useState(0)
+    const [users, setUsers] = useState([{"_id": userId}])
+    const [vitals, setVitals] = useState({heartBeat: "", feeling: "", sugar: "", sleep: "", exercise: ""})
+    const [tasks, setTasks] = useState([])
+    useGetUsers(setUsers)
+    useGetVitals(users[selectedAstronaut]._id, setVitals)
+    useGetTasks(users[selectedAstronaut]._id, setTasks)
+    const {heartBeat, feeling, sugar, sleep, exercise} = vitals
 
     return(
         <Dashboard className={style.dashboard}>
@@ -25,15 +29,15 @@ export default function Page() {
                     <h3> Astronauts </h3>
                 </DashboardElement>
                 <div className={style.astronautContainer}>
-                    {astronauts.map((astronaut, i) =>
-                        <DashboardElement additionalClassName={style.astronaut} backgroundColor={"#BAB6C1"} key={astronaut.id} onClick={() => setSelectedAstronaut(i)}>
-                            <p> {astronaut.name} </p>
+                    {users.map((user, i) =>
+                        <DashboardElement additionalClassName={style.astronaut} backgroundColor={"#BAB6C1"} key={user._id} onClick={() => setSelectedAstronaut(i)}>
+                            <p> {user.name} </p>
                         </DashboardElement>
                     )}
                 </div>
             </section>
 
-            <Vitals title={"Vitals of " + astronauts[selectedAstronaut].name}/>
+            <Vitals title={"Vitals of " + users[selectedAstronaut].name} heartRate={heartBeat} mood={feeling} sugar={sugar} sleep={sleep} exercise={exercise}/>
 
             <section className={style.section}>
                 <DashboardElement backgroundColor={"#C4C3A9"}>

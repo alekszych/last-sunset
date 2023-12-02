@@ -8,28 +8,24 @@ import { IoCubeOutline } from "react-icons/io5";
 import Link from "next/link";
 import Table from "@/components/table/table";
 import {useSession} from "next-auth/react";
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import useGetTasks from "@/hooks/useGetTasks";
 import useGetVitals from "@/hooks/useGetVitals";
+const timeLeft = 235
 
 export default function Page() {
     const { data: session } = useSession()
+    const userId = session?.user?.id || 0
 
     const [tasks, setTasks] = useState([])
     const [vitals, setVitals] = useState([])
 
-    useGetTasks(1, setTasks) // todo: replace id
-    useGetVitals("656a4bad181e25ea1531b02d", setVitals)
+    useGetTasks(userId, setTasks)
+    useGetVitals(userId, setVitals)
 
-    console.log(vitals)
+    let iconMood
 
-    const timeLeft = 235;
-    const bpm = 64;
-    const sugar = 70;
-    const mood = "happy"; //happy || normal  || sad
-    let iconMood;
-
-    switch(mood) {
+    switch(vitals.feeling) {
         case("happy"):
             iconMood = <TbMoodSmileFilled size={24} color={"green"} />;
             break;
@@ -46,7 +42,7 @@ export default function Page() {
     return(
         <div className={style.content}>
             <Dashboard className={style.section}>
-                <DashboardElement backgroundColor={"#C4C3A9"}><h3>Hello {session.user.email}!</h3></DashboardElement>
+                <DashboardElement backgroundColor={"#C4C3A9"}><h3>Hello {session?.user?.email}!</h3></DashboardElement>
                 <section style={{height: "251px"}}>
                     <DashboardElement additionalClassName={style.dashboardEl} backgroundColor={"#BAC1B6"}>
                         <h4 className={style.texts}>Time left</h4>

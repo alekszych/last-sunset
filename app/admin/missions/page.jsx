@@ -92,7 +92,7 @@ export default function Page() {
                 </DialogWindow> : ""}
                 <Dashboard>
                     <Button btnText={"Create new mission"} onClick={()=>{openNewMissionDialog()}}></Button>
-                    <section style={{"padding": "32px 0"}}>
+                    <section className={style.missionContainer}>
                         {
                             missions.map((mission, i)=>
                                 <div key={i} className={mission.title===currentlySelected.title ? style.missionSelected : style.mission} onClick={()=>{setCurrentlySelected(mission)}}>
