@@ -2,6 +2,7 @@ import Dashboard from "@/components/dashboard/Dashboard"
 import DashboardElement from "@/components/dashboardElement/DashboardElement"
 import Table from "@/components/table/table"
 import style from "./page.module.scss"
+import Button from "@/components/button/Button"
 
 const astronauts = [
     {
@@ -16,6 +17,7 @@ const astronauts = [
 export default function Page() {
     return(
         <Dashboard>
+            <Button href={"/"} btnText={"Add task"}/>
             {astronauts.map(astronaut =>
                 <DashboardElement backgroundColor={"#BAB6C1"} key={astronaut.id} additionalClassName={style.element}>
                     <h2> {astronaut.name} </h2>
