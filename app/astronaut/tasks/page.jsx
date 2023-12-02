@@ -1,10 +1,18 @@
+"use client"
 import style from "./page.module.scss"
 import Dashboard from "@/components/dashboard/Dashboard";
 import DashboardElement from "@/components/dashboardElement/DashboardElement";
 import Table from "@/components/table/table";
+import axios from "axios"
+import {useEffect, useState} from "react";
+import {useSession} from "next-auth/react";
+import useGetTasks from "@/hooks/useGetTasks";
 
 export default function Page() {
-    let tasks = [{name: "Collect rocks", status: "Complete"}, {name: "Collect rocks", status: "Complete"}, {name: "Collect rocks", status: "Complete"}, {name: "Collect rocks", status: "Complete"},{name: "Collect rocks", status: "Complete"},{name: "Collect rocks", status: "Complete"}];
+    const {data: session} = useSession()
+
+    const [tasks, setTasks] = useState([])
+    useGetTasks(1, setTasks) // todo: change to session.userId
 
     return(
         <Dashboard>
