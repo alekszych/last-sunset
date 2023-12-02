@@ -2,6 +2,7 @@ import { AuthProvider } from "./Providers";
 import "./globals.css";
 import Header from "@/components/header/header";
 import Footer from "@/components/footer/footer";
+import {Dosis, Lato} from "next/dist/compiled/@next/font/dist/google";
 
 export const metadata = {
   title: "Last Sunset",
@@ -9,14 +10,20 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-
     return (
     <html lang="en">
+        <head>
+            {/*Dosis 400*/}
+            {/*Lato 600*/}
+            <link rel="preconnect" href="https://fonts.googleapis.com" />
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
+            <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@600&family=Lato&display=swap" rel="stylesheet" />
+        </head>
         <body>
             <Header />
             <AuthProvider>{children}</AuthProvider>
             <Footer />
         </body>
     </html>
-  );
+    );
 }
