@@ -41,7 +41,7 @@ const Vitals = ({title, heartRate, sugar, mood, sleep, exercise}) => {
 						<h4> Sleep </h4>
 						<div>
 							<FaBed size={24} />
-							<p> 64bpm </p>
+							<p> 7.5hours </p>
 						</div>
 					</DashboardElement>
 					<DashboardElement backgroundColor={"#BAC1B6"}>
