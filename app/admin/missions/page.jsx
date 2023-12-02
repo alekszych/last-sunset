@@ -20,6 +20,16 @@ export default function Page() {
     const[newTaskDescription, setNewTaskDescription] = useState("");
     const[showAddTaskDialog, setShowAddTaskDialog] = useState(false);
 
+    const changeTaskStatus = async(value, title) => {
+        try{
+            const res = await axios.put('/api/task', {title: title, changedElement: "status", changeValueTo: value})
+            console.log(res)
+        }
+        catch (e)
+        {
+            console.log(e)
+        }
+    }
     async function changeStatus()
     {
         await axios.put("/api/mission", {title: currentlySelected.title, changedElement: "status", changeValueTo: currentlySelected.status === "In progress" ? "Pending" : "In progress"});
@@ -124,7 +134,7 @@ export default function Page() {
                                 <h3>Progress</h3>
                                 <ProgressBar tasks={currentlySelected.milestones}></ProgressBar>
                             </div>
-                            <Table items={currentlySelected.milestones}></Table>
+                            <Table items={currentlySelected.milestones} changeTaskStatus={changeTaskStatus}></Table>
                         </div>
                     </section>
                     <Button btnText={"Add task to mission"} onClick={()=>{setShowAddTaskDialog(true)}}></Button>

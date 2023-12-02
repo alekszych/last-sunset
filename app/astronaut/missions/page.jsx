@@ -5,10 +5,22 @@ import Dashboard from "@/components/dashboard/Dashboard";
 import ProgressBar from "@/components/progressBar/ProgressBar";
 import Table from "@/components/table/table";
 import style from "./page.module.scss";
+import axios from "axios";
 
 export default function Page() {
     const[mission, setMission] = useState(null);
     const[loading, setLoading] = useState(true);
+
+    const changeTaskStatus = async(value, title) => {
+        try{
+            const res = await axios.put('/api/task', {title: title, changedElement: "status", changeValueTo: value})
+            console.log(res)
+        }
+        catch (e)
+        {
+            console.log(e)
+        }
+    }
 
     useEffect(() => {
         fetch('/api/mission')
@@ -49,7 +61,7 @@ export default function Page() {
                                 <h3>Progress</h3>
                                 <ProgressBar tasks={mission.milestones}></ProgressBar>
                             </div>
-                            <Table items={mission.milestones}></Table>
+                            <Table items={mission.milestones} changeTaskStatus={changeTaskStatus}></Table>
                         </div>
                     </section>
                 </Dashboard>
