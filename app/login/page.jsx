@@ -4,23 +4,27 @@ import Button from "@/components/button/Button"
 import Input from "@/components/input/Input"
 import {useState} from "react"
 import {signIn} from "next-auth/react"
-import {redirect} from "next/navigation"
+import {redirect, useRouter} from "next/navigation"
 
 export default function Page() {
 	const [email, setEmail] = useState("")
 	const [password, setPassword] = useState("")
+	const router = useRouter()
 
 	const handleSubmit = async () => {
-		fetch('/api/login', {method: "POST", body: JSON.stringify({email: email, password: password})})
-				.then((res) => res.json())
-				.then((data) => {
-					console.log(data)
-					redirect("/astronaut/dashboard")
-				})
-				.catch(e => {
-					console.log(e)
-				})
-	};
+		const res = await signIn("credentials", {
+			email,
+			password,
+			redirect: false,
+		});
+
+		if (res.error) {
+			console.log("Invalid Credentials");
+			return;
+		}
+
+		router.replace("/astronaut/dashboard");
+	}
 
 	return(
 		<div className={style.loginForm}>

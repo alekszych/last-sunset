@@ -5,7 +5,7 @@ export default function Input({type, required, placeholder, label, additionalCla
         return(
             <div className={style.inputWrapper}>
                 <label style={{color: "#2A2A2A"}}>{label}</label>
-                <textarea placeholder={placeholder} className={[style.textarea, additionalClassName].join(" ")} required={!!required} onChange={e => onChange(e)}/>
+                <textarea placeholder={placeholder} className={[style.textarea, additionalClassName].join(" ")} required={!!required} onChange={e => onChange(e.target.value)}/>
             </div>
         )
     }
@@ -14,7 +14,7 @@ export default function Input({type, required, placeholder, label, additionalCla
         return(
             <div className={style.inputWrapper}>
                 <label style={{color: "#2A2A2A"}}>{label}</label>
-                <select className={[style.select, additionalClassName].join(" ")} required={!!required} onChange={e => onChange(e)}>
+                <select className={[style.select, additionalClassName].join(" ")} required={!!required} onChange={e => onChange(e.target.value)}>
                     {selectOptionsHTML}
                 </select>
             </div>
@@ -24,7 +24,7 @@ export default function Input({type, required, placeholder, label, additionalCla
     return(
         <div className={style.inputWrapper}>
             <label style={{color: "#2A2A2A"}} >{label}</label>
-            <input type={type} placeholder={placeholder} className={[style.input, additionalClassName].join(" ")} required={!!required} onChange={e => onChange(e)}/>
+            <input type={type} placeholder={placeholder} className={[style.input, additionalClassName].join(" ")} required={!!required} onChange={e => onChange(e.target.value)}/>
         </div>
     )
 }
