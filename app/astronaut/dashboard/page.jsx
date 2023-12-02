@@ -5,6 +5,7 @@ import Image from "next/image";
 import { FaHeart } from "react-icons/fa";
 import { TbMoodSmileFilled, TbMoodEmptyFilled, TbMoodSadFilled } from "react-icons/tb";
 import { IoCubeOutline } from "react-icons/io5";
+import Link from "next/link";
 
 export default function Page() {
     const name = "John";
@@ -14,6 +15,8 @@ export default function Page() {
     const sugar = 70;
     const mood = "happy"; //happy || normal  || sad
     let iconMood;
+
+    let tasks = [{name: "Collect rocks", status: "Complete"}, {name: "Collect rocks", status: "Complete"}, {name: "Collect rocks", status: "Complete"}, {name: "Collect rocks", status: "Complete"},{name: "Collect rocks", status: "Complete"},{name: "Collect rocks", status: "Complete"}];
 
     switch(mood) {
         case("happy"):
@@ -52,9 +55,22 @@ export default function Page() {
                             </div>
                         </div>
                     </DashboardElement>
-                    <DashboardElement backgroundColor={"#BAB6C1"}>
+                    <DashboardElement additionalClassName={style.dashboardElException} backgroundColor={"#BAB6C1"}>
                         <h3>Tasks</h3>
-                        
+                        <div className={style.taskGroup}>
+                            <p className={style.tasksHeader1}><b>Name</b></p>
+                            <p className={style.tasksHeader2}><b>Status</b></p>
+                            {
+                                tasks.map((el, index)=>{
+                                    if(index == 3) {
+                                        return(<Link href={"/astronaut/tasks"}><p className={style.seeAllTasksLink}><b><u>See all tasks</u></b></p></Link>);
+                                    } else if (index > 3) {
+                                        return;
+                                    }
+                                    return(<><p>{el.name}</p><p>{el.status}</p></>);
+                                })
+                            }
+                        </div>
                     </DashboardElement>
                 </section>
             </Dashboard>
