@@ -1,0 +1,22 @@
+.astronaut{
+  width: fit-content!important;
+  &:hover{
+    cursor: pointer;
+    transform: scale(1.05);
+  }
+}
+
+.astronautContainer{
+  display: flex;
+  gap: 32px;
+}
+
+.section{
+  display: flex;
+  flex-direction: column!important;
+  gap: 32px!important;
+}
+
+.dashboard{
+  gap: 64px!important;
+}

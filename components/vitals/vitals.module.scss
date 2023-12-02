@@ -1,0 +1,26 @@
+.row{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 32px;
+  >div{
+    gap: 32px;
+    flex-direction: column;
+    >div {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+  }
+}
+
+.section{
+  display: flex;
+  flex-direction: column!important;
+  gap: 32px!important;
+}
+
+.row2{
+  grid-template-columns: 1fr 1fr;
+}
