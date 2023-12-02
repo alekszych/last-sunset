@@ -1,13 +1,12 @@
 import style from "./page.module.scss"
 import Dashboard from "@/components/dashboard/Dashboard";
 import DashboardElement from "@/components/dashboardElement/DashboardElement";
-import Image from "next/image";
 import { FaHeart } from "react-icons/fa";
 import { TbMoodSmileFilled, TbMoodEmptyFilled, TbMoodSadFilled } from "react-icons/tb";
 import { IoCubeOutline } from "react-icons/io5";
 import Link from "next/link";
 import Table from "@/components/table/table";
-import Input from "@/components/input/Input";
+import DialogWindow from "@/components/dialogWindow/dialogWindow";
 
 export default function Page() {
     const name = "John";
@@ -18,7 +17,7 @@ export default function Page() {
     const mood = "happy"; //happy || normal  || sad
     let iconMood;
 
-    let tasks = [{name: "Collect rocks", status: "Complete"}, {name: "Collect rocks", status: "Complete"}, {name: "Collect rocks", status: "Complete"}, {name: "Collect rocks", status: "Complete"},{name: "Collect rocks", status: "Complete"},{name: "Collect rocks", status: "Complete"}];
+    let tasks = [{name: "Collect rocks", description: "Collect rocks from a nearby hill", status: "Complete"}, {name: "Find life", description: "Find any form of life", status: "Complete"}];
 
     switch(mood) {
         case("happy"):
@@ -80,9 +79,6 @@ export default function Page() {
                     <Table items={tasks} />
                 </DashboardElement>
             </Dashboard>
-            <Input type={"select"} label={"sex"} selectOptionsHTML={<><option value='jaderka'>jaderka</option><option value='jaderka'>jaderka</option><option value='jaderka'>jaderka</option></>} required={true} />
-            <Input type={"text"} placeholder={"sex"} label={"sex"} required={true} />
-            <Input type={"textarea"} placeholder={"sex"} label={"sex"} required={true} />
         </div>
     )
 }

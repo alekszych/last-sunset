@@ -14,6 +14,8 @@
   font-size: 16px;
   font-family: Lato, sans-serif;
   color: black;
+  -webkit-appearance: none;
+  -moz-appearance: none;
 
   &:focus {
     border: 2px solid #B7B7B7;
