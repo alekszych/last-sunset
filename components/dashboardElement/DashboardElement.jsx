@@ -1,5 +1,4 @@
 "use client";
-
 import style from "./dashboardElement.module.scss"
 
 const DashboardElement = ({backgroundColor, children, additionalClassName}) => {

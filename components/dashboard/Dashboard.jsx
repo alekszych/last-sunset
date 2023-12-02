@@ -2,9 +2,9 @@
 
 import style from "./dashboard.module.scss"
 
-const Dashboard = ({children}) => {
+const Dashboard = ({children, className}) => {
     return (
-        <div className={style.dashboard}>
+        <div className={style.dashboard + " " + className}>
             {children}
         </div>
     );

@@ -1,8 +1,11 @@
+"use client"
 import Dashboard from "@/components/dashboard/Dashboard"
 import DashboardElement from "@/components/dashboardElement/DashboardElement"
 import Table from "@/components/table/table"
 import style from "./page.module.scss"
 import Button from "@/components/button/Button"
+import {useEffect, useState} from "react"
+import axios from "axios"
 
 const astronauts = [
     {
