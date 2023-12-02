@@ -46,7 +46,7 @@ export default function Page() {
             <div style={{"padding": "64px 0"}}>
                 <Dashboard>
                     <Button href={"/ababba"} btnText={"Create new mission"}></Button>
-                    <section style={{"padding": "32px 0"}}>
+                    <section className={style.missionContainer}>
                         {
                             missions.map((mission, i)=>
                                 <div key={i} className={mission.title===currentlySelected.title ? style.missionSelected : style.mission} onClick={()=>{setCurrentlySelected(mission)}}>
