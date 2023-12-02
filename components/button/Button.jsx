@@ -3,6 +3,7 @@ import style from "./button.module.scss"
 import Link from "next/link"
 
 const Button = ({btnText, href, additionalClassName}) => {
+    console.log(additionalClassName)
     return (
         <Link href={href} className={additionalClassName}>
             <button className={[style.btnTransparent, additionalClassName].join(" ")}>

@@ -8,7 +8,7 @@ export default async function Home() {
             <Image src={"/home_page_background.png"} alt={"background"} width={3500} height={3500} className={style.backgroundImage} />
             <h1 className={style.title}>Last sunset Mission</h1>
             {/*href????*/}
-            <Button additionalClassName={style.buttonA} transparent={true} btnText={"Learn about our mission"} href={"/guest"}/>
+            <Button additionalClassName={style.buttonA} transparent={true} btnText={"Learn about our missions"} href={"/guest"}/>
         </div>
     );
 }

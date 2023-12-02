@@ -6,7 +6,7 @@ export default function Page() {
     return(
         <div>
             <Vitals title={"Your vitals"} />
-            <Button additionalClassName={style.buttonEx} btnText={"Report current vitals"} href={"/astronaut/vitals"} />
+            <Button btnText={"Report current vitals"} additionalClassName={"buttonEx"} href={"/astronaut/report-vitals"} />
         </div>
     )
 }

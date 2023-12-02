@@ -1,5 +1,6 @@
 .buttonEx {
-  width: fit-content;
+  display: block;
+  width: fit-content !important;
   margin-left: auto;
-  background-color: red;
+  padding-right: 128px;
 }

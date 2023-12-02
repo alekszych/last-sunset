@@ -32,7 +32,7 @@ export async function PUT(req) {
 
         const mission = await Mission.findOneAndUpdate({title: title}, {milestones: newMilestones});
 
-        console.log("updated mission: ", mission);
+        console.log("updated missions: ", mission);
         return NextResponse.json({ mission });
     } catch (error) {
         console.log(error);
