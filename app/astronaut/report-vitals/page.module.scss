@@ -1,0 +1,40 @@
+.form {
+  display: flex;
+  padding: 64px;
+  flex-direction: column;
+  align-items: center;
+  gap: 48px;
+  border-radius: 16px;
+  background: #B0D2C1;
+  width: fit-content;
+  margin: 0 auto;
+  margin-top: 64px;
+}
+
+.inputContainer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+
+.colorChange {
+  color: black !important;
+  border: 2px solid black;
+  cursor: pointer;
+
+  &:hover {
+    color: white !important;
+    background-color: black;
+  }
+}
+
+.title {
+  color: black;
+}

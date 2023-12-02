@@ -58,8 +58,8 @@ export default function Page() {
 		<div className={style.loginForm}>
 			<h2> Create account </h2>
 			<div className={style.inputContainer}>
-				<Input type={"text"} label={<p> Email </p>} onChange={setEmail}/>
-				<Input type={"text"} label={<p> Password </p>} onChange={setPassword}/>
+				<Input type={"text"} label={"Email"} onChange={setEmail}/>
+				<Input type={"text"} label={"Password"} onChange={setPassword}/>
 			</div>
 			<Button onClick={handleSubmit} btnText={"Register"}/>
 		</div>
