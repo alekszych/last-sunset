@@ -18,7 +18,6 @@ export async function POST(req) {
                 { status: 400 }
             );
         await Vitals.find({userId: user}).deleteOne()
-
         await Vitals.create({userId, heartBeat, feeling, sugar, sleep, exercise, mood})
         return NextResponse.json({ message: "Vitals added." }, { status: 201 });    }
     catch (error) {

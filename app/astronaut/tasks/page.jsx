@@ -3,16 +3,28 @@ import style from "./page.module.scss"
 import Dashboard from "@/components/dashboard/Dashboard";
 import DashboardElement from "@/components/dashboardElement/DashboardElement";
 import Table from "@/components/table/table";
-import axios from "axios"
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import {useSession} from "next-auth/react";
 import useGetTasks from "@/hooks/useGetTasks";
+import axios from "axios"
 
 export default function Page() {
     const {data: session} = useSession()
+    const userId = session?.user?.id || 0
 
     const [tasks, setTasks] = useState([])
-    useGetTasks(1, setTasks) // todo: change to session.userId
+    useGetTasks(userId, setTasks)
+
+    const changeTaskStatus = async(value, taskId) => {
+        try{
+            const res = await axios.put('/api/task', {taskId: taskId, changeElement: "status", changeValueTo: value})
+            console.log(res)
+        }
+        catch (e)
+        {
+            console.log(e)
+        }
+    }
 
     return(
         <Dashboard>
@@ -21,7 +33,7 @@ export default function Page() {
                 <h3>Your Tasks</h3>
             </DashboardElement>
             <DashboardElement backgroundColor={"#C4C3A9"}>
-                <Table items={tasks} />
+                <Table items={tasks} changeTaskStatus={changeTaskStatus}/>
             </DashboardElement>
         </Dashboard>
     )

@@ -2,7 +2,6 @@
 
 import Dashboard from "@/components/dashboard/Dashboard";
 import Button from "@/components/button/Button";
-import DashboardElement from "@/components/dashboardElement/DashboardElement";
 import {useEffect, useState} from "react";
 import style from "./page.module.scss";
 import ProgressBar from "@/components/progressBar/ProgressBar";

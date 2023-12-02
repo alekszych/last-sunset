@@ -4,7 +4,7 @@ import style from "./table.module.scss"
 import DialogWindow from "@/components/dialogWindow/dialogWindow";
 import Input from "@/components/input/Input";
 
-const Table = ({items}) => {
+const Table = ({items, changeTaskStatus}) => {
 	const [window, setWindow] = useState(false)
 	return (
 		<div className={style.table} role={"table"}>
@@ -17,9 +17,12 @@ const Table = ({items}) => {
 				<p onClick={() => {setWindow(item)}} className={style.link}> {item.status} </p>
 			</>)}
 			{window && <DialogWindow close={() => setWindow(false)}>
-				<h3> {window.name} </h3>
+				<h3> {window.title} </h3>
 				<p> {window.description} </p>
-				<Input type={"select"} selectOptionsHTML={<><option value={"completed"}>Completed</option><option value={"progress"}>Progress</option><option value={"pending"}>Pending</option></>} unit={"select"}/>
+				<Input type={"select"}
+				       selectOptionsHTML={<><option value={"completed"}>Completed</option><option value={"progress"}>Progress</option><option value={"pending"}>Pending</option></>}
+				       unit={"select"}
+				       onChange={e => {changeTaskStatus(e, window._id); setWindow(false)}}/>
 			</DialogWindow>}
 		</div>
 	)

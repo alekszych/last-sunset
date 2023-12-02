@@ -31,17 +31,17 @@ export default function Page() {
                 <div className={style.astronautContainer}>
                     {users.map((user, i) =>
                         <DashboardElement additionalClassName={style.astronaut} backgroundColor={"#BAB6C1"} key={user._id} onClick={() => setSelectedAstronaut(i)}>
-                            <p> {user.name} </p>
+                            <h4> {user.email} </h4>
                         </DashboardElement>
                     )}
                 </div>
             </section>
 
-            <Vitals title={"Vitals of " + users[selectedAstronaut].name} heartRate={heartBeat} mood={feeling} sugar={sugar} sleep={sleep} exercise={exercise}/>
+            <Vitals title={"Vitals of " + users[selectedAstronaut].email} heartRate={heartBeat} mood={feeling} sugar={sugar} sleep={sleep} exercise={exercise}/>
 
             <section className={style.section}>
                 <DashboardElement backgroundColor={"#C4C3A9"}>
-                    <h3> Tasks of John Sparrow </h3>
+                    <h3> Tasks of {users[selectedAstronaut].email} </h3>
                 </DashboardElement>
                 <DashboardElement backgroundColor={"#BAB6C1"}>
                     <Table items={tasks}/>
