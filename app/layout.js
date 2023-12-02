@@ -16,6 +16,7 @@ export default function RootLayout({ children }) {
             <link rel="preconnect" href="https://fonts.googleapis.com" />
             <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
             <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@600&family=Lato&display=swap" rel="stylesheet" />
+            <link rel="icon" href="/logo.ico" sizes="any" />
         </head>
         <body>
             <Header />
