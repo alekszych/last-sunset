@@ -3,6 +3,7 @@ import style from './header.module.scss';
 import { usePathname } from 'next/navigation'
 import Image from "next/image";
 import Link from "next/link";
+import { FaUser } from "react-icons/fa";
 
 export default function Header(type) {
     const pathname = usePathname();
@@ -14,8 +15,10 @@ export default function Header(type) {
         case("astronaut"):
             return(
                 <header className={[style.header, style.headerAstro].join(" ")}>
-                    <Image src={"/logo.png"} alt={"logo"} width={32} height={32} />
-                    <h5>Last sunset</h5>
+                    <Link href={"/"} className={style.logoContainer}>
+                        <Image src={"/logo.png"} alt={"logo"} width={32} height={32} />
+                        <h5>Last sunset</h5>
+                    </Link>
                     <div className={style.links}>
                         <Link href={"/astronaut/dashboard"}><p>Dashboard</p></Link>
                         <Link href={"/astronaut/vitals"}><p>Vitals</p></Link>
@@ -43,7 +46,7 @@ export default function Header(type) {
                 <header className={[style.header, style.headerHome].join(" ")}>
                     <Image src={"/logo.png"} alt={"logo"} width={32} height={32} />
                     <h5>Last sunset</h5>
-                    <Image src={"/profile_icon.png"} className={style.profileIcon} alt={"profile"} width={32} height={32} />
+                    <FaUser size={32} color={"white"} className={style.profileIcon} />
                 </header>
             )
     }

@@ -1,8 +1,6 @@
 import { AuthProvider } from "./Providers";
 import "./globals.css";
 import Header from "@/components/header/header";
-import Footer from "@/components/footer/footer";
-import {Dosis, Lato} from "next/dist/compiled/@next/font/dist/google";
 
 export const metadata = {
   title: "Last Sunset",
@@ -22,7 +20,6 @@ export default function RootLayout({ children }) {
         <body>
             <Header />
             <AuthProvider>{children}</AuthProvider>
-            <Footer />
         </body>
     </html>
     );
