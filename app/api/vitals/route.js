@@ -31,8 +31,8 @@ export async function POST(req) {
 export async function GET(req) {
     try {
         await connectMongoDB();
-        let id =req.nextUrl.searchParams.get("id")
-        console.log(id)
+        let id = req.nextUrl.searchParams.get("userId")
+        console.log("id", id)
         let vitals = await Vitals.findOne({ userId:id });
         console.log(vitals +"----------")
         if(vitals == null)

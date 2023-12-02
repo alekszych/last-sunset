@@ -8,19 +8,26 @@ import { IoCubeOutline } from "react-icons/io5";
 import Link from "next/link";
 import Table from "@/components/table/table";
 import {useSession} from "next-auth/react";
+import {useEffect, useState} from "react";
+import useGetTasks from "@/hooks/useGetTasks";
+import useGetVitals from "@/hooks/useGetVitals";
 
 export default function Page() {
     const { data: session } = useSession()
 
-    const name = "John";
-    const surname = "Sparrow";
+    const [tasks, setTasks] = useState([])
+    const [vitals, setVitals] = useState([])
+
+    useGetTasks(1, setTasks)
+    useGetVitals("656a4bad181e25ea1531b02d", setVitals)
+
+    console.log(vitals)
+
     const timeLeft = 235;
     const bpm = 64;
     const sugar = 70;
     const mood = "happy"; //happy || normal  || sad
     let iconMood;
-
-    let tasks = [{name: "Collect rocks", description: "Collect rocks from a nearby hill", status: "Complete"}, {name: "Find life", description: "Find any form of life", status: "Complete"}];
 
     switch(mood) {
         case("happy"):
@@ -41,21 +48,24 @@ export default function Page() {
             <Dashboard className={style.section}>
                 <DashboardElement backgroundColor={"#C4C3A9"}><h3>Hello {session.user.email}!</h3></DashboardElement>
                 <section style={{height: "251px"}}>
-                    <DashboardElement additionalClassName={style.dashboardEl} backgroundColor={"#BAC1B6"}><h3 className={style.texts}>Time left</h3><h2>{timeLeft===1 ? timeLeft + "day" : timeLeft + "days"}</h2></DashboardElement>
+                    <DashboardElement additionalClassName={style.dashboardEl} backgroundColor={"#BAC1B6"}>
+                        <h4 className={style.texts}>Time left</h4>
+                        <h3> {timeLeft===1 ? timeLeft + "day" : timeLeft + " days"}</h3>
+                    </DashboardElement>
                     <DashboardElement backgroundColor={"#B0D2C1"}>
                         <h3>Vitals</h3>
                         <div className={style.widgetGroup}>
                             <div className={style.iconWidget}>
                                 <FaHeart size={24} color={"#AD0000"} />
-                                <h5>{bpm} bpm</h5>
+                                <h5>{vitals.heartBeat} bpm</h5>
                             </div>
                             <div className={style.iconWidget}>
                                 {iconMood}
-                                <h5>{mood=="happy" ? "Happy" : mood=="normal" ? "Normal" : "Sad"}</h5>
+                                <h5>{vitals.feeling === "happy" ? "Happy" : vitals.feeling === "normal" ? "Normal" : "Sad"}</h5>
                             </div>
                             <div className={style.iconWidget}>
                                 <IoCubeOutline size={24} color={"black"} />
-                                <h5>{sugar} mg</h5>
+                                <h5>{vitals.sugar} mg</h5>
                             </div>
                         </div>
                     </DashboardElement>
@@ -65,13 +75,13 @@ export default function Page() {
                             <p className={style.tasksHeader1}><b>Name</b></p>
                             <p className={style.tasksHeader2}><b>Status</b></p>
                             {
-                                tasks.map((el, index)=>{
-                                    if(index == 3) {
+                                tasks.slice(0, 2).map((el, index)=>{
+                                    if(index === 3) {
                                         return(<Link href={"/astronaut/tasks"}><p className={style.seeAllTasksLink}><b><u>See all tasks</u></b></p></Link>);
                                     } else if (index > 3) {
                                         return;
                                     }
-                                    return(<><p>{el.name}</p><p>{el.status}</p></>);
+                                    return(<><p>{el.title}</p> <p>{el.status}</p></>);
                                 })
                             }
                         </div>
