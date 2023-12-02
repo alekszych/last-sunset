@@ -1,0 +1,17 @@
+.table{
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  width: 100%;
+  row-gap: 16px;
+  p:nth-child(3n){
+    text-decoration: underline;
+  }
+}
+
+
+
+.heading{
+  font-weight: 700;
+  text-decoration: none!important;
+}
+

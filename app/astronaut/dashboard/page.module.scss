@@ -1,0 +1,44 @@
+.content {
+  padding: 0 131px;
+}
+
+.section {
+  margin-bottom: 32px;
+}
+
+.texts {
+  gap: 0;
+  margin-bottom: 16px;
+}
+
+.dashboardEl {
+  gap: 0 !important;
+}
+
+.dashboardElException {
+  gap: 10px !important;
+}
+
+.widgetGroup {
+  width: 300px;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.iconWidget {
+  display: flex;
+  gap: 8px;
+}
+
+.taskGroup {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  row-gap: 16px;
+  column-gap: 50px;
+}
+
+.seeAllTasksLink {
+  width: 100%;
+}

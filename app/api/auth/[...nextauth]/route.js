@@ -16,6 +16,7 @@ export const authOptions = {
         try {
           await connectMongoDB();
           const user = await User.findOne({ email });
+          console.log(user)
 
           if (!user) {
             return null;
@@ -37,7 +38,7 @@ export const authOptions = {
   session: {
     strategy: "jwt",
   },
-  secret: process.env.NEXTAUTH_SECRET,
+  secret: "secret",
   pages: {
     signIn: "/",
   },
