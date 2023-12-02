@@ -6,9 +6,9 @@ export default function AdminLayout({ children }) {
 	const {data: session} = useSession()
 	const router = useRouter()
 
-	if(!session){
-		router.replace("/login")
-	}
+	// if(!session){
+	// 	router.replace("/login")
+	// }
 
 	return (<> {children} </>)
 }

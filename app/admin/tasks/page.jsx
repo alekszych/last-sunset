@@ -4,31 +4,28 @@ import DashboardElement from "@/components/dashboardElement/DashboardElement"
 import Table from "@/components/table/table"
 import style from "./page.module.scss"
 import Button from "@/components/button/Button"
-import {useEffect, useState} from "react"
-import axios from "axios"
+import {useState} from "react";
+import useGetTasks from "@/hooks/useGetTasks";
+import {useSession} from "next-auth/react";
+import useGetAllTasks from "@/hooks/useGetAllTasks";
 
-const astronauts = [
-    {
-        id: 124214,
-        name: "John Doe",
-        tasks: [
-            {id: 4121321, name: "Task 1", description: "Lorem ipsum dolor", status: "Pending"}
-        ]
-    }
-]
 
 export default function Page() {
+    const {data: session} = useSession()
+
+    const [tasks, setTasks] = useState([])
+    useGetAllTasks(setTasks)
+
+
     return(
         <Dashboard>
             <Button href={"/"} btnText={"Add task"}/>
-            {astronauts.map(astronaut =>
-                <DashboardElement backgroundColor={"#BAB6C1"} key={astronaut.id} additionalClassName={style.element}>
-                    <h2> {astronaut.name} </h2>
-                    <Table
-                        items={astronaut.tasks}
-                    />
-                </DashboardElement>
-            )}
+            <DashboardElement backgroundColor={"#BAB6C1"} additionalClassName={style.element}>
+                <h3> All tasks </h3>
+                <Table
+                    items={tasks}
+                />
+            </DashboardElement>
         </Dashboard>
     )
 }
