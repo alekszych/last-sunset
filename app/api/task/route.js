@@ -27,7 +27,7 @@ export async function GET(req) {
     try {
         await connectMongoDB();
         const userId = req.nextUrl.searchParams.get("userId");
-        console.log(userId)
+        console.log("userID", userId)
         const task = await Task.find({ userId: userId });
         return NextResponse.json(task);
     } catch (error) {
