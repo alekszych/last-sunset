@@ -1,5 +1,63 @@
+import style from "./page.module.scss"
+import Dashboard from "@/components/dashboard/Dashboard";
+import DashboardElement from "@/components/dashboardElement/DashboardElement";
+import Image from "next/image";
+import { FaHeart } from "react-icons/fa";
+import { TbMoodSmileFilled, TbMoodEmptyFilled, TbMoodSadFilled } from "react-icons/tb";
+import { IoCubeOutline } from "react-icons/io5";
+
 export default function Page() {
+    const name = "John";
+    const surname = "Sparrow";
+    const timeLeft = 235;
+    const bpm = 64;
+    const sugar = 70;
+    const mood = "happy"; //happy || normal  || sad
+    let iconMood;
+
+    switch(mood) {
+        case("happy"):
+            iconMood = <TbMoodSmileFilled size={24} color={"green"} />;
+            break;
+
+        case("normal"):
+            iconMood = <TbMoodEmptyFilled  size={24} color={"darkblue"} />;
+            break;
+
+        case("sad"):
+            iconMood = <TbMoodSadFilled size={24} color={"red"} />;
+            break;
+    }
+
     return(
-        <div>mrr</div>
+        <div className={style.content}>
+            <Dashboard className={style.section}>
+                <DashboardElement backgroundColor={"#C4C3A9"}><h3>Hello {name + " " + surname}!</h3></DashboardElement>
+                <section style={{height: "251px"}}>
+                    <DashboardElement additionalClassName={style.dashboardEl} backgroundColor={"#BAC1B6"}><h3 className={style.texts}>Time left</h3><h2>{timeLeft===1 ? timeLeft + "day" : timeLeft + "days"}</h2></DashboardElement>
+                    <DashboardElement backgroundColor={"#B0D2C1"}>
+                        <h3>Vitals</h3>
+                        <div className={style.widgetGroup}>
+                            <div className={style.iconWidget}>
+                                <FaHeart size={24} color={"#AD0000"} />
+                                <h5>{bpm} bpm</h5>
+                            </div>
+                            <div className={style.iconWidget}>
+                                {iconMood}
+                                <h5>{mood=="happy" ? "Happy" : mood=="normal" ? "Normal" : "Sad"}</h5>
+                            </div>
+                            <div className={style.iconWidget}>
+                                <IoCubeOutline size={24} color={"black"} />
+                                <h5>{sugar} mg</h5>
+                            </div>
+                        </div>
+                    </DashboardElement>
+                    <DashboardElement backgroundColor={"#BAB6C1"}>
+                        <h3>Tasks</h3>
+                        
+                    </DashboardElement>
+                </section>
+            </Dashboard>
+        </div>
     )
 }
