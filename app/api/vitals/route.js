@@ -17,7 +17,7 @@ export async function POST(req) {
                 { message: "Invalid id" },
                 { status: 400 }
             );
-        await Vitals.find({userId: user}).deleteOne()
+        let deleted = await Vitals.deleteOne({userId: userId});
 
         await Vitals.create({userId, heartBeat, feeling, sugar, sleep, exercise, mood})
         return NextResponse.json({ message: "Vitals added." }, { status: 201 });    }
