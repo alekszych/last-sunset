@@ -8,15 +8,13 @@ import {useState} from "react"
 import useGetUsers from "@/hooks/useGetUsers";
 import useGetVitals from "@/hooks/useGetVitals";
 import useGetTasks from "@/hooks/useGetTasks";
-
-
-const tasks = [
-    {id: 4121321, name: "Task 1", description: "Lorem ipsum dolor", status: "Pending"}
-]
+import {useSession} from "next-auth/react";
 
 export default function Page() {
+    const { data: session } = useSession()
+    const userId = session?.user?.id
     const [selectedAstronaut, setSelectedAstronaut] = useState(0)
-    const [users, setUsers] = useState([{"_id": 0}])
+    const [users, setUsers] = useState([{"_id": userId}])
     const [vitals, setVitals] = useState({heartBeat: "", feeling: "", sugar: "", sleep: "", exercise: ""})
     const [tasks, setTasks] = useState([])
     useGetUsers(setUsers)

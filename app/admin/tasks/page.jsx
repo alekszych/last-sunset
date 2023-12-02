@@ -12,28 +12,38 @@ import useGetUsers from "@/hooks/useGetUsers"
 
 export default function Page() {
     const {data: session} = useSession()
-    const [users, setUsers] = useState([])
-    useGetUsers(setUsers)
+    const [astronauts, setAstronauts] = useState([])
+    useGetUsers(setAstronauts)
     const [tasks, setTasks] = useState([])
     useGetAllTasks(setTasks)
-
     const groupedTasks = Object.groupBy(tasks, item => item.userId)
-    for (const [key, value] of Object.entries(groupedTasks)){
-        if(key !== undefined){
-            console.log(users.find(user => user._id === key))
+
+    const listOfUsersWithTasks = []
+
+    if(astronauts){
+        for (const [key, value] of Object.entries(groupedTasks)){
+            if(key !== undefined){
+                listOfUsersWithTasks.push({
+                    userId: (astronauts.find(astronaut => key === astronaut._id))._id,
+                    name: (astronauts.find(astronaut => key === astronaut._id)).email,
+                    tasks: groupedTasks[(astronauts.find(astronaut => key === astronaut._id))._id]
+                })
+
+            }
         }
     }
-    console.log(groupedTasks)
 
     return(
         <Dashboard>
             <Button href={"/"} btnText={"Add task"}/>
-            <DashboardElement backgroundColor={"#BAB6C1"} additionalClassName={style.element}>
-                <h3> All tasks </h3>
-                <Table
-                    items={tasks}
-                />
-            </DashboardElement>
+            {listOfUsersWithTasks.map(item =>
+                <DashboardElement backgroundColor={"#BAB6C1"} additionalClassName={style.element} key={item.userId}>
+                    <h3> {item.name} </h3>
+                    <Table
+                        items={item.tasks}
+                    />
+                </DashboardElement>
+            )}
         </Dashboard>
     )
 }

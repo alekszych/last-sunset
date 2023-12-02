@@ -15,15 +15,13 @@ const timeLeft = 235
 
 export default function Page() {
     const { data: session } = useSession()
-    console.log(session)
+    const userId = session?.user?.id || 0
 
     const [tasks, setTasks] = useState([])
     const [vitals, setVitals] = useState([])
 
-    useGetTasks(1, setTasks) // todo: replace id
-    useGetVitals("656a4bad181e25ea1531b02d", setVitals)
-
-    console.log(vitals)
+    useGetTasks(userId, setTasks)
+    useGetVitals(userId, setVitals)
 
     let iconMood
 
@@ -44,7 +42,7 @@ export default function Page() {
     return(
         <div className={style.content}>
             <Dashboard className={style.section}>
-                <DashboardElement backgroundColor={"#C4C3A9"}><h3>Hello {session.user.email}!</h3></DashboardElement>
+                <DashboardElement backgroundColor={"#C4C3A9"}><h3>Hello {session?.user?.email}!</h3></DashboardElement>
                 <section style={{height: "251px"}}>
                     <DashboardElement additionalClassName={style.dashboardEl} backgroundColor={"#BAC1B6"}>
                         <h4 className={style.texts}>Time left</h4>
