@@ -50,7 +50,9 @@ export default function Header(type) {
                         <Image src={"/logo.png"} alt={"logo"} width={32} height={32} />
                         <h5>Last sunset</h5>
                     </Link>
-                    <FaUser size={32} color={"white"} className={style.profileIcon} />
+                    <Link href={"/login"} className={style.profileIcon}>
+                        <FaUser size={32} color={"white"} className={style.profileIcon} />
+                    </Link>
                 </header>
             )
     }

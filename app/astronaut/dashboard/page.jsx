@@ -1,14 +1,17 @@
+"use client"
 import style from "./page.module.scss"
 import Dashboard from "@/components/dashboard/Dashboard";
 import DashboardElement from "@/components/dashboardElement/DashboardElement";
-import Image from "next/image";
 import { FaHeart } from "react-icons/fa";
 import { TbMoodSmileFilled, TbMoodEmptyFilled, TbMoodSadFilled } from "react-icons/tb";
 import { IoCubeOutline } from "react-icons/io5";
 import Link from "next/link";
 import Table from "@/components/table/table";
+import {useSession} from "next-auth/react";
 
 export default function Page() {
+    const { data: session } = useSession()
+
     const name = "John";
     const surname = "Sparrow";
     const timeLeft = 235;
@@ -17,7 +20,7 @@ export default function Page() {
     const mood = "happy"; //happy || normal  || sad
     let iconMood;
 
-    let tasks = [{name: "Collect rocks", status: "Complete"}, {name: "Collect rocks", status: "Complete"}, {name: "Collect rocks", status: "Complete"}, {name: "Collect rocks", status: "Complete"},{name: "Collect rocks", status: "Complete"},{name: "Collect rocks", status: "Complete"}];
+    let tasks = [{name: "Collect rocks", description: "Collect rocks from a nearby hill", status: "Complete"}, {name: "Find life", description: "Find any form of life", status: "Complete"}];
 
     switch(mood) {
         case("happy"):
@@ -36,7 +39,7 @@ export default function Page() {
     return(
         <div className={style.content}>
             <Dashboard className={style.section}>
-                <DashboardElement backgroundColor={"#C4C3A9"}><h3>Hello {name + " " + surname}!</h3></DashboardElement>
+                <DashboardElement backgroundColor={"#C4C3A9"}><h3>Hello {session.user.email}!</h3></DashboardElement>
                 <section style={{height: "251px"}}>
                     <DashboardElement additionalClassName={style.dashboardEl} backgroundColor={"#BAC1B6"}><h3 className={style.texts}>Time left</h3><h2>{timeLeft===1 ? timeLeft + "day" : timeLeft + "days"}</h2></DashboardElement>
                     <DashboardElement backgroundColor={"#B0D2C1"}>
