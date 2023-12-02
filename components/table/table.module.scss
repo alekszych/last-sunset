@@ -3,12 +3,13 @@
   grid-template-columns: 1fr 2fr 1fr;
   width: 100%;
   row-gap: 16px;
-  p:nth-child(3n){
+  .link{
     text-decoration: underline;
+    &:hover{
+      cursor: pointer;
+    }
   }
 }
-
-
 
 .heading{
   font-weight: 700;
