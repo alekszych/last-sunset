@@ -9,7 +9,7 @@ import { useParams } from 'next/navigation'
 export async function POST(req) {
     try {
         await connectMongoDB();
-        const { userId, heartBeat, feeling, sugar, sleep, exercise} = await req.json();
+        const { userId, heartBeat, feeling, sugar, sleep, exercise, mood} = await req.json();
         console.log(userId +" "+ heartBeat)
         let user = await User.findOne({ _id:userId });
         if(user == null)
@@ -17,7 +17,9 @@ export async function POST(req) {
                 { message: "Invalid id" },
                 { status: 400 }
             );
-        await Vitals.create({userId, heartBeat, feeling, sugar, sleep, exercise})
+        await Vitals.find({userId: user}).deleteOne()
+
+        await Vitals.create({userId, heartBeat, feeling, sugar, sleep, exercise, mood})
         return NextResponse.json({ message: "Vitals added." }, { status: 201 });    }
     catch (error) {
         console.log(error)
